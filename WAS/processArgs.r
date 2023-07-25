@@ -21,7 +21,25 @@
 # if argument 'test' is used then run test phenome scan
 processArgs <- function() {
 
-if (opt$test==TRUE) {
+if(opt$annie==TRUE) {
+		# set up the test phenome scan settings
+	datadir='../annie/data/';
+	opt$resDir <<- '../annie/results/';
+        opt$userId <<- 'userId';
+	opt$phenofile <<-  paste(datadir,'phenotypes_sliced.csv', sep="");
+        opt$variablelistfile <<- '../annie/variable-lists/outcome-info.tsv';
+        opt$datacodingfile <<- '../annie/variable-lists/data-coding-ordinal-info.txt';
+	opt$confidenceintervals <<- TRUE	
+
+	if(opt$save == FALSE) {
+		opt$traitofinterestfile <<- paste(datadir,'traitofinterest.csv', sep="");
+		opt$traitofinterest <<- 'x25781_2_0';
+		opt$sensitivity <<- FALSE;
+		opt$genetic <<- FALSE;  # this was your issue I think, it was looking for some GENETIC data but could not find it
+	}
+	processParts(opt$partIdx, opt$numParts);
+}
+else if (opt$test==TRUE) {
 
 	# set up the test phenome scan settings
 	datadir='../testWAS/data/';

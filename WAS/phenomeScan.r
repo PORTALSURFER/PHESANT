@@ -21,13 +21,11 @@
 
 
 # allow script to be run from other directories
-initial.options <- commandArgs(trailingOnly = FALSE)
-file.arg.name <- "--file="
-script.name <- sub(file.arg.name, "", initial.options[grep(file.arg.name, initial.options)])
-script.basename <- dirname(script.name)
-setwd(script.basename)
-
-
+# initial.options <- commandArgs(trailingOnly = FALSE)
+# file.arg.name <- "--file="
+# script.name <- sub(file.arg.name, "", initial.options[grep(file.arg.name, initial.options)])
+# script.basename <- dirname(script.name)
+# setwd(script.basename)
 library("optparse")
 
 option_list = list(
@@ -48,8 +46,10 @@ option_list = list(
   make_option(c("-i", "--confidenceintervals"), type="logical", default=TRUE, help="Whether confidence intervals should be calculated [default= %default]"),
   make_option(c("-k", "--standardise"), action="store", default=TRUE, help="Trait of interest is standardised to have mean=0 and std=1 [default= %default]"),
   make_option(c("-m", "--mincase"), type="integer", default=10, help="Minimum number of cases for categorical outcomes"),
-  make_option(c("-p", "--tab"), action="store", default=FALSE, help="Phenotype (outcome) file is tab rather than comma seperated [default= %default]")
+  make_option(c("-p", "--tab"), action="store", default=FALSE, help="Phenotype (outcome) file is tab rather than comma seperated [default= %default]"),
+  make_option(c("--annie"), action="store_true", default=FALSE, help="Annie mode")
 );
+
 opt_parser = OptionParser(option_list=option_list);
 opt = parse_args(opt_parser);
 

@@ -1,0 +1,4 @@
+name,countValue
+excluded.catSin,1
+excluded.int,1
+notinphenofile,570
